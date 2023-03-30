@@ -15,8 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
+//import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.bonifasiustrg.pokemonapp.pokemonlist.PokemonListScreen
 import com.bonifasiustrg.pokemonapp.ui.theme.PokemonAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
                         }
 
                         // if pokemon clicked, go to detail
-                        composable("pokeon_detail_screen/{dominantColor}/{pokemonName}",
+                        composable("pokeon_detail_screen/{dominantColor}/{pokemonName}",  // also need to pass some argument, need it later
                         arguments = listOf(
                             navArgument("dominantColor") {
                                 type = NavType.IntType
@@ -73,5 +74,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     PokemonAppTheme {
+
     }
 }
