@@ -118,7 +118,9 @@ fun SearchBar(
             Text(text = hint, color = Color.LightGray,
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp))
         }
-        Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon", modifier = Modifier.align(alignment = CenterEnd).padding(end = 20.dp))
+        Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon", modifier = Modifier
+            .align(alignment = CenterEnd)
+            .padding(end = 20.dp))
     }
 }
 
@@ -147,6 +149,21 @@ fun PokemonList(
             PokemonRow(rowIndex = it, entries = pokemonList, navController = navController)
         }
         Log.e("TES", "lazy column end")
+    }
+
+    Box(
+        contentAlignment = Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        if (isLoading) {
+            CircularProgressIndicator(color = MaterialTheme.colors.primary)
+        }
+
+        if (loadError.isNotEmpty()) {
+            RetrySection(error = loadError) {
+                viewModel.loadPokemonPaginated()
+            }
+        }
     }
 }
 
@@ -284,5 +301,20 @@ fun PokemonRow(
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@Composable
+fun RetrySection(
+    error: String,
+    onRetryClicked: () -> Unit
+) {
+    Column{
+        Text(text = error, color = Color.Red, fontSize = 20.sp)
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = { onRetryClicked() },
+        modifier = Modifier.align(CenterHorizontally)) {
+            Text(text = "Retry")
+        }
     }
 }
