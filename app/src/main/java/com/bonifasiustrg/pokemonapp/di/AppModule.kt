@@ -17,7 +17,8 @@ object AppModule {
 
     //Provide api in the module after setup API network and request query for it
     //this module will be injected to other class later
-    @Singleton @Provides
+    @Singleton
+    @Provides
     fun providePokemonRepository ( //provide (menyediakan) repository pokemonapi
         api: PokemonAPI
     ): PokemonRepository {
@@ -25,7 +26,8 @@ object AppModule {
     }
 
     //provide the actual api. a retrfit instance
-    @Singleton @Provides
+    @Singleton
+    @Provides
     fun providePokemonApi(): PokemonAPI {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

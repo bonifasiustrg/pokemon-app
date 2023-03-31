@@ -45,7 +45,8 @@ class MainActivity : ComponentActivity() {
                         }
 
                         // if pokemon clicked, go to detail
-                        composable("pokeon_detail_screen/{dominantColor}/{pokemonName}",  // also need to pass some argument, need it later
+                        composable(
+                            "pokemon_detail_screen/{dominantColor}/{pokemonName}",  // also need to pass some argument, need it later
                         arguments = listOf(
                             navArgument("dominantColor") {
                                 type = NavType.IntType
